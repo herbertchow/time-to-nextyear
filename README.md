@@ -11,6 +11,8 @@ npm run start
 打包
 npm run build
 
+打包命令参考 ： electron-packager <应用目录> <应用名称> <打包平台> --out <输出目录> <架构> <应用版本>
+
 打包前先装两个插件
 electron-packager
 electron-prebuilt
@@ -20,6 +22,10 @@ builtin-modules
 decamelize
 
 亲测ok，可以发布本地exe应用程序（windows）
+
+
+### 运行exe
+找到打包后的文件夹，在里面找到.exe文件，双击执行即可
 
 ### 打包
 可以参考
