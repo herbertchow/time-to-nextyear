@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <!-- <h1>距离2019农历新年还有：</h1> -->
+    <h1>距离下一年还有：</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!-- We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+    
+    <p id="main-con">
+
+    </p>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+    <script>
+      function timeToNextYear(originDate){
+        var fullyear = (new Date()).getFullYear();
+        var nextyear = fullyear + 1;
+        //本年的最后一毫秒：
+        var lastday = new Date(originDate || new Date(nextyear,0,1) - 1);
+        
+        var now = new Date();
+        var diff = lastday - now;  //毫秒数
+        var tian = Math.floor(diff / (1000 * 60 * 60 * 24));
+        
+        var shi = Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+        var fen = Math.floor(diff % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) / (1000 * 60));
+        var miao = Math.floor(diff % (1000 * 60 * 60 * 24) % (1000 * 60 * 60) % (1000 * 60) / 1000);
+        // console.log(tian)
+        // console.log(shi)
+        // console.log(fen)
+        // console.log(miao)
+        var getId = document.getElementById('main-con');
+        getId.innerText = tian + '天' + shi + '时' + fen + '分' + miao + '秒';
+      }
+      // timeToNextYear('2019/02/05');
+      timeToNextYear();
+      setInterval(() => {
+        timeToNextYear();
+        // timeToNextYear('2019/02/05');
+      }, 1000);
+    </script>
+  </body>
+</html>
